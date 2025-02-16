@@ -1,0 +1,24 @@
+[project]
+name = "scanner-to-paperless"
+version = "0.1.0"
+description = "HP Scanners (All in ones) to paperless"
+authors = [
+    {name = "Haris",email = "hariss096@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp (>=3.11.12,<4.0.0)",
+    "streamlit (>=1.42.0,<2.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
