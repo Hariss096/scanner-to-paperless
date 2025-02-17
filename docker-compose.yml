@@ -4,9 +4,8 @@ services:
   scanner-to-paperless:
     build: .
     container_name: scanner-to-paperless
-    restart-policy: always
     environment:
-      - PAPERLESS_HOST: ${PAPERLESS_HOST}
-      - PAPERLESS_API_TOKEN: ${PAPERLESS_API_TOKEN}
-      - SCANNER_HOST: ${SCANNER_HOST}
-      - SCANNER_BASIC_AUTH: ${SCANNER_BASIC_AUTH}
+      - PAPERLESS_HOST:${PAPERLESS_HOST}
+      - PAPERLESS_API_TOKEN:${PAPERLESS_API_TOKEN}
+      - SCANNER_HOST:${SCANNER_HOST}
+      - SCANNER_BASIC_AUTH:${SCANNER_BASIC_AUTH}
