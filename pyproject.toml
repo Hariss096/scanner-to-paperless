@@ -10,14 +10,17 @@ requires-python = ">=3.13"
 dependencies = [
     "aiohttp (>=3.11.12,<4.0.0)",
     "streamlit (>=1.42.0,<2.0.0)",
-    "python-dotenv (>=1.0.1,<2.0.0)"
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "pypdf2 (>=3.0.1,<4.0.0)"
 ]
 
 [tool.poetry]
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
+pytest-asyncio = "^0.25.3"
+pre-commit = "4.1.0"
+pytest-mock = "3.14.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
