@@ -5,7 +5,7 @@ services:
     build: .
     container_name: scanner-to-paperless
     environment:
-      - PAPERLESS_HOST:${PAPERLESS_HOST}
-      - PAPERLESS_API_TOKEN:${PAPERLESS_API_TOKEN}
-      - SCANNER_HOST:${SCANNER_HOST}
-      - SCANNER_BASIC_AUTH:${SCANNER_BASIC_AUTH}
+      - PAPERLESS_HOST=${PAPERLESS_HOST}
+      - PAPERLESS_API_TOKEN=${PAPERLESS_API_TOKEN}
+      - SCANNER_HOST=${SCANNER_HOST}
+      - SCANNER_BASIC_AUTH=${SCANNER_BASIC_AUTH}
