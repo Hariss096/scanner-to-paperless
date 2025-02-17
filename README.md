@@ -10,7 +10,8 @@
     - creates a virtual environment and installs dependencies there: `poetry install`
 
 
-- Run: `poetry run streamlit run app.py`
+- Run directly: `poetry run streamlit run app.py`
+- Run via docker: `docker compose up`
 
 
 - Setup pre-commit: `poetry run pre-commit install`
