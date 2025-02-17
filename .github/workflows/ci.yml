@@ -24,4 +24,4 @@ jobs:
         poetry install
 
     - name: Run tests
-      run: poetry run pytest --cov=scanner_to_paperless tests/
+      run: poetry run pytest tests/
