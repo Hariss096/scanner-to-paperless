@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PAPERLESS_URL = getenv("PAPERLESS_URL")
+PAPERLESS_HOST = getenv("PAPERLESS_HOST")
 PAPERLESS_API_TOKEN = getenv("PAPERLESS_API_TOKEN")
 
 
@@ -19,7 +19,7 @@ async def send_to_paperless(
     if not filename.endswith(".pdf"):
         filename += ".pdf"
     async with session.post(
-        f"{PAPERLESS_URL}api/documents/post_document/",
+        f"{PAPERLESS_HOST}api/documents/post_document/",
         headers={"Authorization": f"Token {PAPERLESS_API_TOKEN}"},
         data={"title": filename, "document": pdf},
     ) as paperless_response:

@@ -11,7 +11,7 @@ load_dotenv()
 
 
 SCANNER_BASIC_AUTH = b64encode(getenv("SCANNER_BASIC_AUTH").encode("utf-8"))
-SCANNER_URL = getenv("SCANNER_URL")
+SCANNER_HOST = getenv("SCANNER_HOST")
 
 
 @client_session
@@ -20,7 +20,7 @@ async def trigger_scan(session: ClientSession) -> str | None:
         scan_settings = f.read()
 
     async with session.post(
-        url=f"{SCANNER_URL}eSCL/ScanJobs",
+        url=f"{SCANNER_HOST}eSCL/ScanJobs",
         headers={"Authorization": f"Basic {SCANNER_BASIC_AUTH}"},
         data=scan_settings,  # TODO: Add controls for scan settings
     ) as scan_trigger_response:
@@ -37,7 +37,7 @@ async def trigger_scan(session: ClientSession) -> str | None:
             )
             print(
                 "Scan trigger response:",
-                f"{SCANNER_URL}eSCL/ScanJobs",
+                f"{SCANNER_HOST}eSCL/ScanJobs",
                 await scan_trigger_response.read(),
             )
             return

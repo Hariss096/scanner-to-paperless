@@ -10,7 +10,7 @@ from tests.utils import MockResponse
 
 load_dotenv()
 
-PAPERLESS_URL = getenv("PAPERLESS_URL")
+PAPERLESS_HOST = getenv("PAPERLESS_HOST")
 PAPERLESS_API_TOKEN = getenv("PAPERLESS_API_TOKEN")
 
 

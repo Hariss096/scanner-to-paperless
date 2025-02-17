@@ -15,7 +15,7 @@ load_dotenv()
 
 
 SCANNER_BASIC_AUTH = b64encode(getenv("SCANNER_BASIC_AUTH").encode("utf-8"))
-SCANNER_URL = getenv("SCANNER_URL")
+SCANNER_HOST = getenv("SCANNER_HOST")
 
 
 @pytest.mark.asyncio
