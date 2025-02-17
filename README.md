@@ -4,8 +4,11 @@
 
 ### Local setup
 
-- To install dependencies: `poetry install`
-    - creates a virtual environment and installs dependencies there
+- To install dependencies:
+    - to create virtual env in root dir, make sure poetry is configured accordingly:
+        `poetry config virtualenvs.in-project true`
+    - creates a virtual environment and installs dependencies there: `poetry install`
+
 
 - Run: `poetry run streamlit run app.py`
 
