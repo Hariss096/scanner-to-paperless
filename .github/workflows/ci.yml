@@ -26,8 +26,8 @@ jobs:
     - name: Run tests
       run: poetry run pytest tests/
       env:
-        SCANNER_HOST = ""
-        PAPERLESS_HOST = ""
+        SCANNER_HOST: ""
+        PAPERLESS_HOST: ""
 
-        SCANNER_BASIC_AUTH = "username:password"
-        PAPERLESS_API_TOKEN = ""
+        SCANNER_BASIC_AUTH: "username:password"
+        PAPERLESS_API_TOKEN: ""
