@@ -3,7 +3,7 @@ import streamlit as st
 from scanner_helpers import trigger_scan, get_scanned_document
 from paperless_helpers import send_to_paperless
 
-from PyPDF2 import PdfMerger
+from pypdf import PdfWriter
 
 
 async def save_single_page_pdf(filename: str) -> None:
@@ -33,7 +33,7 @@ async def merge_and_send_to_paperless(doc_name: str) -> None:
         st.toast(":red[No documents to merge]", icon="⚠️")
         return
 
-    merger = PdfMerger()
+    merger = PdfWriter()
 
     for stream in st.session_state["pdf_streams"]:
         pdf_file = io.BytesIO(stream)
