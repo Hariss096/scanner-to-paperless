@@ -13,7 +13,9 @@ PAPERLESS_API_TOKEN = getenv("PAPERLESS_API_TOKEN")
 
 
 @client_session
-async def send_to_paperless(session: aiohttp.ClientSession, filename: str, pdf: bytes) -> str | None:
+async def send_to_paperless(
+    session: aiohttp.ClientSession, filename: str, pdf: bytes
+) -> str | None:
     if not filename.endswith(".pdf"):
         filename += ".pdf"
     async with session.post(

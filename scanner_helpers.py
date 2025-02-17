@@ -1,5 +1,4 @@
 from aiohttp import ClientSession
-import xml.etree.ElementTree as ET
 from http import HTTPStatus
 
 from base64 import b64encode
@@ -22,15 +21,25 @@ async def trigger_scan(session: ClientSession) -> str | None:
 
     async with session.post(
         url=f"{SCANNER_URL}eSCL/ScanJobs",
-        headers={ "Authorization": f"Basic {SCANNER_BASIC_AUTH}" },
+        headers={"Authorization": f"Basic {SCANNER_BASIC_AUTH}"},
         data=scan_settings,  # TODO: Add controls for scan settings
     ) as scan_trigger_response:
         if scan_trigger_response.status == HTTPStatus.CREATED:
-            st.toast(f":green[Scan request sent successfully...: {scan_trigger_response.status}]", icon="✅")
+            st.toast(
+                f":green[Scan request sent successfully...: {scan_trigger_response.status}]",
+                icon="✅",
+            )
             return scan_trigger_response.headers["Location"]
         else:
-            st.toast(f":red[Scan request could not be sent: {scan_trigger_response.status}]", icon="❌")
-            print("Scan trigger response:", f"{SCANNER_URL}eSCL/ScanJobs", await scan_trigger_response.read())
+            st.toast(
+                f":red[Scan request could not be sent: {scan_trigger_response.status}]",
+                icon="❌",
+            )
+            print(
+                "Scan trigger response:",
+                f"{SCANNER_URL}eSCL/ScanJobs",
+                await scan_trigger_response.read(),
+            )
             return
 
 
@@ -38,13 +47,19 @@ async def trigger_scan(session: ClientSession) -> str | None:
 async def get_scanned_document(session: ClientSession, location: str) -> bytes | None:
     async with session.get(url=f"{location}/NextDocument") as scanned_doc_response:
         if not scanned_doc_response.status == HTTPStatus.OK:
-            st.toast(f":red[Document could not be scanned: {scanned_doc_response.status}]", icon="❌")
+            st.toast(
+                f":red[Document could not be scanned: {scanned_doc_response.status}]",
+                icon="❌",
+            )
             return
 
         pdf = await scanned_doc_response.read()
 
-        st.toast(f":green[Document scanned successfully...: {scanned_doc_response.status}]", icon="✅")
+        st.toast(
+            f":green[Document scanned successfully...: {scanned_doc_response.status}]",
+            icon="✅",
+        )
         # async with aiofiles.open("test.pdf", "+wb") as f:
-            # await f.write(content)
+        # await f.write(content)
 
     return pdf

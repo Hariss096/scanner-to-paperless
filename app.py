@@ -1,6 +1,10 @@
 import asyncio
 import streamlit as st
-from helpers import save_single_page_pdf, save_multi_page_pdf, merge_and_send_to_paperless
+from helpers import (
+    save_single_page_pdf,
+    save_multi_page_pdf,
+    merge_and_send_to_paperless,
+)
 
 
 if __name__ == "__main__":

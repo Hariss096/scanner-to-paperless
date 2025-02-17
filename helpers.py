@@ -1,10 +1,10 @@
 import io
-import aiohttp
 import streamlit as st
 from scanner_helpers import trigger_scan, get_scanned_document
 from paperless_helpers import send_to_paperless
 
 from PyPDF2 import PdfMerger
+
 
 async def save_single_page_pdf(filename: str) -> None:
     scanned_document_url = await trigger_scan()
@@ -34,18 +34,21 @@ async def merge_and_send_to_paperless(doc_name: str) -> None:
         return
 
     merger = PdfMerger()
-    
+
     for stream in st.session_state["pdf_streams"]:
         pdf_file = io.BytesIO(stream)
         merger.append(pdf_file)
-    
+
     output = io.BytesIO()
     merger.write(output)
     merger.close()
-    
+
     merged_pdf = output.getvalue()
 
     doc_id = await send_to_paperless(doc_name, merged_pdf)
     if doc_id:
         st.session_state.pdf_streams = []
-        st.toast(f":green[Merged document uploaded to Paperless with ID: {doc_id}]", icon="✅")
+        st.toast(
+            f":green[Merged document uploaded to Paperless with ID: {doc_id}]",
+            icon="✅",
+        )

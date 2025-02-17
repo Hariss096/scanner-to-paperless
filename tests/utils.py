@@ -9,7 +9,7 @@ class MockResponse:
         return self._text
 
     async def read(self):
-            return self._text.encode()
+        return self._text.encode()
 
     async def json(self):
         return self._text

@@ -17,11 +17,9 @@ PAPERLESS_API_TOKEN = getenv("PAPERLESS_API_TOKEN")
 @pytest.mark.asyncio
 async def test_send_to_paperless_success(mocker):
     mock_response = MockResponse(
-        text="Document uploaded",
-        status=HTTPStatus.OK,
-        headers={}
+        text="Document uploaded", status=HTTPStatus.OK, headers={}
     )
-    mocker.patch('aiohttp.ClientSession.post', return_value=mock_response)
+    mocker.patch("aiohttp.ClientSession.post", return_value=mock_response)
     actual_response = await send_to_paperless("test", b"test")
     assert actual_response == await mock_response.json()
 
@@ -31,8 +29,8 @@ async def test_send_to_paperless_failure(mocker):
     mock_response = MockResponse(
         text="",
         status=choice([st for st in HTTPStatus if st != HTTPStatus.OK]),
-        headers={}
+        headers={},
     )
-    mocker.patch('aiohttp.ClientSession.post', return_value=mock_response)
+    mocker.patch("aiohttp.ClientSession.post", return_value=mock_response)
     actual_response = await send_to_paperless("test", b"test")
     assert not actual_response

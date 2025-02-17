@@ -24,9 +24,9 @@ async def test_trigger_scan_success(mocker):
     mock_response = MockResponse(
         text=json_dumps({}),
         status=HTTPStatus.CREATED,
-        headers={ "Location": expected_location }
+        headers={"Location": expected_location},
     )
-    mocker.patch('aiohttp.ClientSession.post', return_value=mock_response)
+    mocker.patch("aiohttp.ClientSession.post", return_value=mock_response)
     actual_location = await trigger_scan()
     assert actual_location == expected_location
 
@@ -36,9 +36,9 @@ async def test_trigger_scan_failed(mocker):
     mock_response = MockResponse(
         text=json_dumps("Request could not be processed"),
         status=choice([st for st in HTTPStatus if st != HTTPStatus.CREATED]),
-        headers={}
+        headers={},
     )
-    mocker.patch('aiohttp.ClientSession.post', return_value=mock_response)
+    mocker.patch("aiohttp.ClientSession.post", return_value=mock_response)
     actual_location = await trigger_scan()
     assert not actual_location
 
@@ -47,10 +47,8 @@ async def test_trigger_scan_failed(mocker):
 async def test_get_scanned_document(mocker):
     expected_binary_data = b"Random pdf binary data"
     mock_response = MockResponse(
-        text=expected_binary_data.decode(),
-        status=HTTPStatus.OK,
-        headers={}
+        text=expected_binary_data.decode(), status=HTTPStatus.OK, headers={}
     )
-    mocker.patch('aiohttp.ClientSession.get', return_value=mock_response)
+    mocker.patch("aiohttp.ClientSession.get", return_value=mock_response)
     actual_text = await get_scanned_document("http://localhost:8080/scan/123")
     assert actual_text == expected_binary_data
