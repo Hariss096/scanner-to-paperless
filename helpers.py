@@ -12,7 +12,7 @@ async def save_single_page_pdf(filename: str) -> None:
 
     pdf_bytes = await get_scanned_document(scanned_document_url)
 
-    send_to_paperless(filename, pdf_bytes)
+    await send_to_paperless(filename, pdf_bytes)
     return scanned_document_url
 
 
