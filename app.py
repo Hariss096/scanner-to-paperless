@@ -15,14 +15,7 @@ if __name__ == "__main__":
 
     is_multi_page = st.checkbox("Multiple pages pdf")
 
-    if not is_multi_page:
-        single_filename = st.text_input("Enter file name")
-        triggered = st.button(
-            "Scan to Paperless",
-            disabled=not single_filename,
-            on_click=lambda: asyncio.run(save_single_page_pdf(single_filename)),
-        )
-    else:
+    if is_multi_page:
         st.button(
             "Scan next document",
             on_click=lambda: asyncio.run(save_multi_page_pdf()),
@@ -35,4 +28,11 @@ if __name__ == "__main__":
             "Merge document in paperless",
             disabled=not merged_filename or not st.session_state.pdf_streams,
             on_click=lambda: asyncio.run(merge_and_send_to_paperless(merged_filename)),
+        )
+    else:
+        single_filename = st.text_input("Enter file name")
+        triggered = st.button(
+            "Scan to Paperless",
+            disabled=not single_filename,
+            on_click=lambda: asyncio.run(save_single_page_pdf(single_filename)),
         )
