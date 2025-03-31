@@ -59,7 +59,8 @@ async def get_scanned_document(session: ClientSession, location: str) -> bytes |
             f":green[Document scanned successfully...: {scanned_doc_response.status}]",
             icon="✅",
         )
-        # async with aiofiles.open("test.pdf", "+wb") as f:
-        # await f.write(content)
+        if not st.session_state.pdf_streams:
+            st.session_state.pdf_streams = []
+        st.session_state.pdf_streams.append(pdf)
 
     return pdf

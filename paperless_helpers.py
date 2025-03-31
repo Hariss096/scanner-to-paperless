@@ -28,6 +28,7 @@ async def send_to_paperless(
                 f":green[Document uploaded to paperless successfully...: {paperless_response.status}]",
                 icon="✅",
             )
+            st.session_state.pdf_streams = []
             return await paperless_response.json()
         else:
             st.toast(
